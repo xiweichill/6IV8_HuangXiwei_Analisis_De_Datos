@@ -32,7 +32,7 @@ vamoshacerunfiltro = df[df['ocean_proximity'] == 'ISLAND']
 print(vamoshacerunfiltro)
 
 #vamos a hacer una grafico de dispersion
-plt.scatter(df['ocean_proximity'][:10],df['median_house_value'][:10])
+plt.hist(df['ocean_proximity'][:10],df['median_house_value'][:10])
 #nombramos los ejes
 plt.xlabel('Proximidad')
 plt.ylabel('Precio')
