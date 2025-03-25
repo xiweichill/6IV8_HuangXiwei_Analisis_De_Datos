@@ -22,10 +22,20 @@ print(con_adeudos_porcentaje)
 
 #3.-Grafica donde se pueda observar las ventas totales respecto del tiempo, en una grafica de barras 
 plt.figure(figsize=(10,6))
-plt.bar(df_unido['B_mes'],df_unido['ventas_tot'])
+plt.bar(df_unido['B_mes'],df_unido['ventas_tot'],color = 'red')
 plt.xlabel('B_mes')
 plt.ylabel('Ventas totales')
 plt.title('Ventas totales por B_mes')
 plt.show()
 
 #4.-Grafica donde se pueda visualizar la desviación estándar de los pagos realizados del comercio respecto del tiempo
+# Calcula la desviación estándar agrupando por 'B_mes', profe aqui no se que hizo, pero encontre que tiene que unir las doscolumnas para sacar su desviacion estandar de valores por usuario en cada fecha
+std_by_mes = df_unido.groupby('B_mes')['pagos_tot'].std().sort_index()
+
+# Grafica usando el método de plot de Pandas
+plt.figure(figsize=(10,6))
+std_by_mes.plot.bar(color='skyblue')
+plt.xlabel('Mes (B_mes)')
+plt.ylabel('Desviación estándar de pagos')
+plt.title('Desviación estándar de pagos por mes')
+plt.show()
