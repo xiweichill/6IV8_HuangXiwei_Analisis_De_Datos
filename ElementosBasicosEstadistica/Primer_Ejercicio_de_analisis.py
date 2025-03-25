@@ -20,4 +20,12 @@ con_adeudos_porcentaje = len(filter_con_adeudos) *100 / (len(df_unido.iloc[:]))
 sin_adeudos = len(filter_sin_adeudos)
 print(con_adeudos_porcentaje)
 
-#3
+#3.-Grafica donde se pueda observar las ventas totales respecto del tiempo, en una grafica de barras 
+plt.figure(figsize=(10,6))
+plt.bar(df_unido['B_mes'],df_unido['ventas_tot'])
+plt.xlabel('B_mes')
+plt.ylabel('Ventas totales')
+plt.title('Ventas totales por B_mes')
+plt.show()
+
+#4.-Grafica donde se pueda visualizar la desviación estándar de los pagos realizados del comercio respecto del tiempo
