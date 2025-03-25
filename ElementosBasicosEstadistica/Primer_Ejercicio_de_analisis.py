@@ -43,3 +43,5 @@ plt.show()
 #5.-Cuanto es la deuda total de los clientes
 total_deudos = sum(df_unido['adeudo_actual'])
 print(f'el total de deudos es {total_deudos}')
+
+# 6.-Cuanto es el porcentaje de utilidad del comercio a partir de el total de las ventas respecto del adeudo 
