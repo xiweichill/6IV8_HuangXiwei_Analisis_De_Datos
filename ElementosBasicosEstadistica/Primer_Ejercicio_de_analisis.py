@@ -11,14 +11,14 @@ df_unido = pd.merge(dataset_datos_completos, dataset_datos_catalogos, on='id_suc
 
 #1.- Ventas totales del comercio
 total_venta = sum(df_unido['ventas_tot'])
-print(total_venta)
+print(f'total de ventas {total_venta}')
 #2.- Gentes con adeudos y sin adeudos en por centaje
 filter_con_adeudos = list(filter(lambda persona : persona == 'Con adeudo', df_unido['B_adeudo']))
 filter_sin_adeudos = list(filter(lambda persona : persona == 'Sin adeudo', df_unido['B_adeudo']))
-print((len(df_unido.iloc[:])))
+
 con_adeudos_porcentaje = len(filter_con_adeudos) *100 / (len(df_unido.iloc[:]))
-sin_adeudos = len(filter_sin_adeudos)
-print(con_adeudos_porcentaje)
+sin_adeudos_porcentaje = len(filter_sin_adeudos) * 100 / len(df_unido.iloc[:])
+print(f'Porcentaje de la gente con adeudos {con_adeudos_porcentaje}% \nPorcenta de la gente sin adeudos {sin_adeudos_porcentaje}%')
 
 #3.-Grafica donde se pueda observar las ventas totales respecto del tiempo, en una grafica de barras 
 plt.figure(figsize=(10,6))
@@ -39,3 +39,7 @@ plt.xlabel('Mes (B_mes)')
 plt.ylabel('Desviación estándar de pagos')
 plt.title('Desviación estándar de pagos por mes')
 plt.show()
+
+#5.-Cuanto es la deuda total de los clientes
+total_deudos = sum(df_unido['adeudo_actual'])
+print(f'el total de deudos es {total_deudos}')
