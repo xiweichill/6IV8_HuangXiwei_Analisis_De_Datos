@@ -69,33 +69,4 @@ for metric, matrix in distance_matrices.items():
     print(f"Distancia máxima: {max_val} entre {max_pair[0]} y {max_pair[1]}")
     print(f"Distancia mínima: {min_val} entre {min_pair[0]} y {min_pair[1]}")
 
-# Graficamos cada métrica en un subplot
-fig, axes = plt.subplots(1, 3, figsize=(18, 6))
-for ax, (metric, data) in zip(axes, results.items()):
-    # Graficamos los puntos
-    ax.scatter(df_puntos['X'], df_puntos['Y'], color='blue')
-    for label, row in df_puntos.iterrows():
-        ax.text(row['X'] + 0.1, row['Y'] + 0.1, label)
-    
-    # Resaltamos el par de puntos con la distancia máxima (línea roja sólida)
-    p1, p2 = data['max_pair']
-    x_max = [df_puntos.loc[p1, 'X'], df_puntos.loc[p2, 'X']]
-    y_max = [df_puntos.loc[p1, 'Y'], df_puntos.loc[p2, 'Y']]
-    ax.plot(x_max, y_max, color='red', linestyle='-', linewidth=2, label='Máxima distancia')
-    
-    # Resaltamos el par de puntos con la distancia mínima (línea verde discontinua)
-    p1_min, p2_min = data['min_pair']
-    x_min = [df_puntos.loc[p1_min, 'X'], df_puntos.loc[p2_min, 'X']]
-    y_min = [df_puntos.loc[p1_min, 'Y'], df_puntos.loc[p1_min, 'Y']]  # <-- Atención: corregir si es necesario
-    # Corrigiendo: se debe usar df_puntos.loc[p2_min, 'Y'] para el segundo punto
-    y_min = [df_puntos.loc[p1_min, 'Y'], df_puntos.loc[p2_min, 'Y']]
-    ax.plot(x_min, y_min, color='green', linestyle='--', linewidth=2, label='Mínima distancia')
-    
-    ax.set_title(f"Distancia {metric}")
-    ax.set_xlabel('X')
-    ax.set_ylabel('Y')
-    ax.legend()
-    ax.grid(True)
 
-plt.tight_layout()
-plt.show()
